@@ -88,7 +88,10 @@
     position: relative;
     text-align: center;
   }
-
+/**
+.navLiBg
+div滑块背景
+*/
   .navLiBg {
     background-color: #598bf0;
     border-radius: 25px;
