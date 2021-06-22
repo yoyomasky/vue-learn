@@ -9,7 +9,9 @@
       </ul>
       <div class="se">当前选中菜单为 → <span class="se_title">{{thisClassName}}</span></div>
       <ul class="dataList">
-        <li v-for="(item,index) in dataList[avtiveHaver]" :key="index">{{item}}</li>
+        <li v-for="(item,index) in dataList[avtiveHaver]" :key="index" @touchstart="onLi(index)">
+          <p>{{item}}</p>
+        </li>
       </ul>
     </div>
 
@@ -74,6 +76,9 @@
         this.avtiveHaver = index;
         this.thisClassName = this.navArr[index].title;
         this.dataListType = !this.dataList.hasOwnProperty(index);
+      },
+      onLi(index){
+        console.log(index);
       }
     }
 
@@ -89,6 +94,9 @@
   li {
     list-style: none;
     cursor: pointer;
+  }
+  ul{
+    padding:0;
   }
 
   .navbar {
@@ -153,14 +161,20 @@ div滑块背景
     font-size: 16px;
     text-align: left;
     position: relative;
+    padding:0 20px 20px 20px;
   }
 
   .dataList li {
     height: 40px;
     line-height: 40px;
-    padding: 5px;
+    border-bottom:1px dashed #e8e8e8;
+    padding:5px 5px 5px 35px;
   }
+.dataList li p{
+  margin:0;
 
+  line-height:50px;
+}
   .noContent {
     padding:65% 25% 25% 25%;
     background: #fff no-repeat center/40% url("../assets/images/noContentsIcon.png");
