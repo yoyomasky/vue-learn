@@ -1,11 +1,21 @@
 <template>
   <div>
-    <p>navbar</p>
-    <ul class="navbar">
-      <li v-for="(item,index) in navArr" :key="index" :class="{active:index==avtiveHaver}" @click="tab(index)">
-        {{item.title}}</li>
-      <div class="navLiBg"></div>
-    </ul>
+    <div class="contentBox">
+      <p>navbar</p>
+      <ul class="navbar">
+        <li v-for="(item,index) in navArr" :key="index" :class="{active:index==avtiveHaver}" @click="tab(index)">
+          {{item.title}}</li>
+        <div class="navLiBg"></div>
+      </ul>
+      <div class="se">当前选中菜单为 → <span class="se_title">{{thisClassName}}</span></div>
+      <ul class="dataList">
+        <li v-for="(item,index) in dataList[avtiveHaver]" :key="index">{{item}}</li>
+      </ul>
+    </div>
+
+    <div class="noContent" v-show="dataListType">
+      - 暂无列表内容 -
+    </div>
   </div>
 </template>
 <script>
@@ -14,6 +24,8 @@
     data() {
       return {
         avtiveHaver: 0,
+        thisClassName: '',
+        dataListType:false,
         navArr: [{
             'id': 1,
             'title': 'class 1'
@@ -35,6 +47,11 @@
             'title': 'class 5'
           },
         ],
+        dataList: [
+          ['内容一', '内容二', '内容三', '内容四', '内容五'],
+          ['选项一', '选项二', '选项三', '选项四'],
+          ['测试一', '测试二', '测试三'],
+        ]
       }
     },
     mounted() {
@@ -42,8 +59,12 @@
       let liwidth = document.querySelectorAll(".navbar li");
       //背景
       let bgWidth = document.querySelector(".navLiBg");
+
       //设置背景的宽度
       bgWidth.style.width = liwidth[0].offsetWidth + 'px';
+      this.thisClassName = this.navArr[0].title;
+
+
     },
     methods: {
       tab(index) {
@@ -51,6 +72,8 @@
         let selfLeft = document.querySelectorAll(".navbar li")[index].offsetLeft;
         bgWidth.style.left = selfLeft + 'px';
         this.avtiveHaver = index;
+        this.thisClassName = this.navArr[index].title;
+        this.dataListType = !this.dataList.hasOwnProperty(index);
       }
     }
 
@@ -63,7 +86,6 @@
     padding: 0;
     background-color: #e0eaf7;
   }
-
   li {
     list-style: none;
     cursor: pointer;
@@ -88,7 +110,8 @@
     position: relative;
     text-align: center;
   }
-/**
+
+  /**
 .navLiBg
 div滑块背景
 */
@@ -107,6 +130,40 @@ div滑块背景
     color: rgb(255, 255, 255);
     font-weight: 600;
     transition: all .4s;
+  }
+
+  .se {
+    margin: 10px 0;
+    padding: 5px;
+    background-color: #fff;
+
+    font-size: 16px;
+    font-weight: bold;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+  }
+
+  .se_title {
+    color: #598bf0;
+  }
+
+  .dataList {
+    background-color: #fff;
+    font-size: 16px;
+    text-align: left;
+    position: relative;
+  }
+
+  .dataList li {
+    height: 40px;
+    line-height: 40px;
+    padding: 5px;
+  }
+
+  .noContent {
+    padding:65% 25% 25% 25%;
+    background: #fff no-repeat center/40% url("../assets/images/noContentsIcon.png");
   }
 
 </style>
