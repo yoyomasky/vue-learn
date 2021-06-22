@@ -47,6 +47,9 @@ export default {
         line-height:45px;
         border-radius: 25px;
     }
-    .active{color: rgb(255, 255, 255);background-color: #598bf0;}
+    .active{
+        color: rgb(255, 255, 255);
+        background-color: #598bf0;
+    }
 
 </style>
