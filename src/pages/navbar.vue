@@ -96,7 +96,7 @@
     z-index: 1;
     position: absolute;
     top: 5px;
-    left: 5px;
+    left: 10px;
     transition: all .4s;
   }
 
