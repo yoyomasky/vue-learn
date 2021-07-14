@@ -5,6 +5,8 @@ import page from '@/pages/index'
 import cycle from '@/pages/cycle'
 import event from '@/pages/event'
 import navbar from '@/pages/navbar'
+import todolist from '@/pages/todolist'
+import cart from '@/pages/cart'
 
 Vue.use(Router)
 
@@ -34,6 +36,16 @@ export default new Router({
       path: '/navbar',
       name: 'navbar',
       component: navbar
+    },
+    {
+      path: '/todolist',
+      name: 'todolist',
+      component: todolist
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: cart
     },
   ]
 })
